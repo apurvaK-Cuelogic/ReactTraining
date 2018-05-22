@@ -8,11 +8,6 @@ class App extends Component {
     username: 'Apurva'
   };
   
-  switchNameHandler = (newName) => {
-    this.setState( {
-      username: newName
-    } )
-  }
   userNameChangeHandler = ( event ) =>{
     this.setState( { 
       username: event.target.value
@@ -23,8 +18,8 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Hello</h1>
-        <UserOutput name={this.switchNameHandler.bind(this,'Appu')} />
-        {/* <UserInput changed={this.userNameChangeHandler}/> */}
+        <UserOutput name={this.state.username}/>
+        <UserInput changed={this.userNameChangeHandler}/>
       </div>
     );
   }
