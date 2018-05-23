@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person'
-
+import Person from './Person/Person';
+import Radium,{ StyleRoot } from 'radium';
 class App extends Component {
   state = {
     persons: [
@@ -39,11 +39,16 @@ class App extends Component {
   }
   render() {
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     };
 
     let persons = null;
@@ -60,20 +65,35 @@ class App extends Component {
           })}
         </div>
       );
+      style.backgroundColor = 'red';
+      style[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black'
+      };
+    }
+    // Dynamic styling
+    const classes = []
+    if(this.state.persons.length <= 2){
+      classes.push('red')
+    }
+    if(this.state.persons.length <= 1){
+      classes.push('bold')             // ['red','bold']
     }
 
     return (
+      <StyleRoot>
       <div className="App">
         <h1>Hello,welcome to react</h1>
+        <p className={classes.join(' ')}>This is really working</p>
         <p><button style={style} onClick={this.togglePersonsHandler}>
              {this.state.showPersons ? <span>Hide Persons</span> : <span>Show Persons</span>}
            </button>
         </p>  
         { persons}
       </div>
-      //React.createElement('div',{ className:'App' },React.createElement('h1',null,'Hello, welcome to react'),React.createElement('h1',{ className:'header' },'Hello, welcome to react'))
+      </StyleRoot>
     );
   }
 }
 
-export default App;
+export default Radium(App);
