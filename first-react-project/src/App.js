@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person';
-import Radium,{ StyleRoot } from 'radium';
+import Person from './Person/Person'
+
 class App extends Component {
   state = {
     persons: [
@@ -44,11 +44,7 @@ class App extends Component {
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
+      cursor: 'pointer'
     };
 
     let persons = null;
@@ -66,10 +62,6 @@ class App extends Component {
         </div>
       );
       style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      };
     }
     // Dynamic styling
     const classes = []
@@ -81,7 +73,6 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
       <div className="App">
         <h1>Hello,welcome to react</h1>
         <p className={classes.join(' ')}>This is really working</p>
@@ -91,9 +82,9 @@ class App extends Component {
         </p>  
         { persons}
       </div>
-      </StyleRoot>
+      //React.createElement('div',{ className:'App' },React.createElement('h1',null,'Hello, welcome to react'),React.createElement('h1',{ className:'header' },'Hello, welcome to react'))
     );
   }
 }
 
-export default Radium(App);
+export default App;
