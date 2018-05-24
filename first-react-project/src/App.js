@@ -38,16 +38,9 @@ class App extends Component {
     this.setState({showPersons: !doesShow});
   }
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    };
 
     let persons = null;
+    let btnClass = '';
 
     if(this.state.showPersons){
       persons = (
@@ -61,7 +54,7 @@ class App extends Component {
           })}
         </div>
       );
-      style.backgroundColor = 'red';
+      btnClass = classes.Red;
     }
     // Dynamic styling
     const assignedClasses = []
@@ -76,10 +69,9 @@ class App extends Component {
       <div className={classes.App}>
         <h1>Hello,welcome to react</h1>
         <p className={assignedClasses.join(' ')}>This is really working</p>
-        <p><button style={style} onClick={this.togglePersonsHandler}>
+        <button className={btnClass} onClick={this.togglePersonsHandler}>
              {this.state.showPersons ? <span>Hide Persons</span> : <span>Show Persons</span>}
-           </button>
-        </p>  
+        </button> 
         { persons}
       </div>
       //React.createElement('div',{ className:'App' },React.createElement('h1',null,'Hello, welcome to react'),React.createElement('h1',{ className:'header' },'Hello, welcome to react'))
